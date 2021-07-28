@@ -1,0 +1,13 @@
+#health check
+GET      /api/health      controllers.HealthController.health()
+
+#routs
+GET      /api/books       controllers.BookController.all()
+
+GET      /api/books/:id   controllers.BookController.findOne(id: String)
+
+POST     /api/books/add   controllers.BookController.addBook()
+
+PUT      /api/books/:id   controllers.BookController.update(id: String)
+
+DELETE   /api/books/:id   controllers.BookController.delete(id: String)
