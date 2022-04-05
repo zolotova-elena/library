@@ -15,7 +15,7 @@ class BookDAO @Inject()(
   @NamedDatabase("library") val mongoApi: ReactiveMongoApi
 )(implicit ec: ExecutionContext) {
 
-  def collection: Future[BSONCollection] = mongoApi.database.map(db => db.collection("movies"))
+  def collection: Future[BSONCollection] = mongoApi.database.map(db => db.collection("books"))
 
   def findAll(): Future[List[Book]] = {
     collection.flatMap(
@@ -35,8 +35,9 @@ class BookDAO @Inject()(
   }
 
   def insert(book: Book): Future[WriteResult] = {
-    collection.flatMap(_.insert(ordered = false)
-      .one(book))
+    collection.flatMap(
+      _.insert(ordered = false).one(book)
+    )
   }
 
   def update(book: Book): Future[WriteResult] = {

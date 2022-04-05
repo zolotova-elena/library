@@ -20,7 +20,7 @@ class BookController @Inject()(
     }
   }
 
-  def findOne(id:String): Action[AnyContent] = Action.async {
+  def findOne(id: String): Action[AnyContent] = Action.async {
     val bookIdO = BSONObjectID.parse(id).toOption
     bookIdO.map { bookId =>
       bookService.findOne(bookId).map(bookO =>
@@ -39,7 +39,7 @@ class BookController @Inject()(
     )
   }
 
-  def update(id:String): Action[JsValue] = Action.async(parse.json) { request =>
+  def update(id: String): Action[JsValue] = Action.async(parse.json) { request =>
     import request.{body => json}
 
     val bookIdO = BSONObjectID.parse(id).toOption
@@ -57,7 +57,7 @@ class BookController @Inject()(
 
   }
 
-  def delete(id:String): Action[AnyContent] = Action.async {
+  def delete(id: String): Action[AnyContent] = Action.async {
     val bookIdO = BSONObjectID.parse(id).toOption
     bookIdO.map { bookId =>
       bookService.delete(bookId).map(_ => Ok)

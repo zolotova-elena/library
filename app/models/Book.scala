@@ -35,7 +35,7 @@ trait BookJson {
     Json.obj(
       "id" -> r.id,
       "title" -> r.title,
-      "description" -> r.title
+      "description" -> r.description
     )
   }
 }
